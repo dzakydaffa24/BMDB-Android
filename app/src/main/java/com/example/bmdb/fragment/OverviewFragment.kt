@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.bmdb.R
 import com.example.bmdb.adapter.ItemAdapter
 import com.example.bmdb.databinding.FragmentOverviewBinding
 import com.example.bmdb.viewmodel.OverviewViewModel
@@ -31,17 +30,17 @@ class OverviewFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val viewAdapter = ItemAdapter({ item -> showDetail(item)})
+        val viewAdapter = ItemAdapter { item -> showDetail(item) }
         binding.recyclerView.adapter = viewAdapter
 
-        viewModel.items.observe(viewLifecycleOwner, Observer {
-            list -> viewAdapter.submitList(list)
+        viewModel.items.observe(viewLifecycleOwner, Observer { list ->
+            viewAdapter.submitList(list)
         })
 
         return binding.root
     }
 
-    fun showDetail(title: String){
+    fun showDetail(title: String) {
         Log.d("Movie", title)
     }
 

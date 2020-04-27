@@ -28,17 +28,17 @@ class OverviewViewModel : ViewModel() {
         initData()
     }
 
-    private fun initData(){
+    private fun initData() {
         _response.value = "Loading..."
         crScope.launch {
             try {
                 val result = MovieAPI.retrofitService.showList()
 
-                if(result.size > 0){
+                if (result.isNotEmpty()) {
                     _items.value = result
                     _response.value = "OK"
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 _response.value = "Please check your connection"
                 Log.d("Movie", e.message)
             }
